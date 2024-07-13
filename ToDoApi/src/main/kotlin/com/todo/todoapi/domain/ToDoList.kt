@@ -8,7 +8,7 @@ data class ToDoList(
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0,
     
-    // seems like kotlin doesnt have a way to negate magic strings here?
+    // seems like kotlin doesn't have a way to negate magic strings here?
     @OneToMany(mappedBy = "toDoList", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val items: MutableList<ToDoItem>
+    var items: MutableList<ToDoItem>? = mutableListOf()
 )

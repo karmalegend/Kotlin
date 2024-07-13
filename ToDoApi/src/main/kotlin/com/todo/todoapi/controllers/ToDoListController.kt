@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -17,6 +18,8 @@ class ToDoListController(
 ) {
 
     @GetMapping
-    suspend fun getList(): List<ToDoList> = withContext(dispatcher) { repository.findAll().toList() }
+    suspend fun getToDoList(): List<ToDoList> = withContext(dispatcher) { repository.findAll().toList() }
 
+    @PostMapping
+    suspend fun createToDoList(list: ToDoList): ToDoList = withContext(dispatcher) { repository.save(list) }
 }
